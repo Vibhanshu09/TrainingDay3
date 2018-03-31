@@ -14,4 +14,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="ToolbarTheme2" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimaryTabLayout</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkTabLayout</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
 </resources>

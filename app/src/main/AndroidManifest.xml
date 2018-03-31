@@ -16,10 +16,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MyToolbarActivity"
-            android:theme="@style/ToolbarTheme"
+        <activity
+            android:name=".MyToolbarActivity"
             android:label="TabLayout"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/ToolbarTheme" />
+        <activity android:name=".MyToolbarActivity2"
+            android:label="TabLayout2"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/ToolbarTheme2"></activity>
     </application>
 
 </manifest>
