@@ -24,6 +24,10 @@ public class MyToolbarActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewpager);
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        //viewPagerAdapter.addFragments();
+        viewPagerAdapter.addFragments(new ShareFragment(), "Share");
+        viewPagerAdapter.addFragments(new CallFragment(), "Call");
+        viewPagerAdapter.addFragments(new MessageFragment(), "Message");
+        viewPager.setAdapter(viewPagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
 }
