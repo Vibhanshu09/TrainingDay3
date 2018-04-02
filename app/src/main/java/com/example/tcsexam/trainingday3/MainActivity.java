@@ -13,8 +13,52 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button popupMenuButton, radioMenu, tabLayoutButton;
+    Button popupMenuButton, radioMenu, tabLayoutButton, navDrawerButton;
     int menu_state = 0;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        popupMenuButton = findViewById(R.id.popup_menu);
+        radioMenu = findViewById(R.id.radio_menu);
+        tabLayoutButton = findViewById(R.id.tablayout_button);
+        navDrawerButton = findViewById(R.id.navdrawer_button);
+
+        popupMenuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popupMenu = new PopupMenu(MainActivity.this,view);
+                MenuInflater menuInflater = popupMenu.getMenuInflater();
+                menuInflater.inflate(R.menu.menu,popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenuEventHandler(MainActivity.this));
+                popupMenu.show();
+            }
+        });
+
+        radioMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                registerForContextMenu(view);
+                openContextMenu(view);
+            }
+        });
+
+        tabLayoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, MyToolbarActivity.class));
+            }
+        });
+
+        navDrawerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, MyToolbarActivity2.class));
+            }
+        });
+    }
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
@@ -54,41 +98,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onContextItemSelected(item);
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        popupMenuButton = findViewById(R.id.popup_menu);
-        radioMenu = findViewById(R.id.radio_menu);
-        tabLayoutButton = findViewById(R.id.tablayout_button);
-
-        popupMenuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PopupMenu popupMenu = new PopupMenu(MainActivity.this,view);
-                MenuInflater menuInflater = popupMenu.getMenuInflater();
-                menuInflater.inflate(R.menu.menu,popupMenu.getMenu());
-                popupMenu.setOnMenuItemClickListener(new PopupMenuEventHandler(MainActivity.this));
-                popupMenu.show();
-            }
-        });
-
-        radioMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                registerForContextMenu(view);
-                openContextMenu(view);
-            }
-        });
-
-        tabLayoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, MyToolbarActivity.class));
-            }
-        });
-    }
     public void showToast(String textToDisplay){
         Toast.makeText(MainActivity.this, textToDisplay, Toast.LENGTH_SHORT).show();
     }

@@ -1,6 +1,7 @@
 package com.example.tcsexam.trainingday3;
 
 
+import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -27,6 +28,10 @@ public class MyToolbarActivity2 extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
         navigationView = findViewById(R.id.navigationView);
         drawerLayout = findViewById(R.id.drawer);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.drawer_open,R.string.drawer_colse);
@@ -50,6 +55,7 @@ public class MyToolbarActivity2 extends AppCompatActivity {
                 fragmentTransaction.replace(R.id.frame,fragment);
                 fragmentTransaction.commit();
                 getSupportActionBar().setTitle(item.getTitle());
+                drawerLayout.closeDrawers();
 
 
                 return true;
